@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator Ikhsan</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+
+    <div class="btn">
+        <strong>🌙</strong>
+        <strong>🌞</strong>
+    </div>
+    
+    <div class="container">
+        <form class="calculator" name="calc">
+            <input type="text" class="value" readonly name="txt">
+            
+            <span class="num clear" onclick="document.calc.txt.value = ''"><i>C</i></span>
+            <span class="num" onclick="calculate('/')"><i>/</i></span>
+            <span class="num" onclick="calculate('*')"><i>*</i></span>
+            <span class="num number" onclick="calculate('7')"><i>7</i></span>
+            <span class="num number" onclick="calculate('8')"><i>8</i></span>
+            <span class="num number" onclick="calculate('9')"><i>9</i></span>
+            <span class="num" onclick="calculate('-')"><i>-</i></span>
+            <span class="num number" onclick="calculate('4')"><i>4</i></span>
+            <span class="num number" onclick="calculate('5')"><i>5</i></span>
+            <span class="num number" onclick="calculate('6')"><i>6</i></span>
+            <span class="num plus" onclick="calculate('+')"><i>+</i></span>
+            <span class="num number" onclick="calculate('1')"><i>1</i></span>
+            <span class="num number" onclick="calculate('2')"><i>2</i></span>
+            <span class="num number" onclick="calculate('3')"><i>3</i></span>
+            <span class="num number" onclick="calculate('0')"><i>0</i></span>
+            <span class="num number" onclick="calculate('00')"><i>00</i></span>
+            <span class="num number" onclick="calculate('.')"><i>.</i></span>
+            <span class="num equal" onclick="document.calc.txt.value=eval(calc.txt.value)"><i>=</i></span>
+        </form>
+    </div>
+
+    <script>
+        function calculate(data) {
+            if (document.calc.txt.value.charAt(document.calc.txt.value.length - 1) !== data && /[+-/*]/gi.test(document.calc.txt.value.charAt(document.calc.txt.value.length - 1)) && /[+-/*]/gi.test(data)) {
+                document.calc.txt.value = document.calc.txt.value.slice(0, -1);
+            } else if (document.calc.txt.value.charAt(document.calc.txt.value.length - 1) == data && /[+-/*]/gi.test(data)) {
+                return false;
+            }
+            let separate = document.calc.txt.value.split(/[\+\-\/\*]/);
+            console.log(separate)
+            if (separate[separate.length - 1].includes(".") && data == ".") {
+                return false;
+            }
+
+            document.calc.txt.value += data;
+
+        }
+        let body = document.querySelector('body');
+        let btn = document.querySelector('.btn');
+        btn.onclick = function(){
+            body.classList.toggle('light')
+        }
+    </script>
+</body> 
+</html>
